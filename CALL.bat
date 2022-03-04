@@ -20,7 +20,7 @@ echo Please press ENTER once to continue with that configuration.
 pause > nul
 echo Starting FFMPEG...
 dir
-"%~dp0ffmpeg/bin/ffmpeg.exe" -y -i %IPATH% -ac 1 -preset slow -vb 100k -ab 32k -g 360 -keyint_min 360 -bf 20 -qcomp 0.9 -rc-lookahead 120 -filter:v "fps=1, crop=in_w:in_h*0.75:0:0.125*in_h, scale=1600x1200" %OPATH%
+"%~dp0ffmpeg/bin/ffmpeg.exe" -y -i %IPATH% -ac 1 -preset slow -vb 100k -ab 32k -g 360 -keyint_min 360 -bf 20 -qcomp 0.9 -rc-lookahead 120 -filter:v "fps=1, crop=in_w:in_h*0.75:0:0.125*in_h, scale=1600:1200" %OPATH%
 
 echo The end.
 echo Press any key to exit.
