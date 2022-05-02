@@ -6,7 +6,7 @@
 :: You can achieve square recording easily on PC. On smartphones, there's some apps like SnapCamera HDR that allows custom resolution using Camera2Api.
 
 @echo off
-echo FFMPEG script by Lohk, 2022
+echo FFMPEG script by Lohk, 2022 (ROT 90 DEGREES VERSION)
 
 if [%1]==[] goto manual
 
@@ -20,7 +20,7 @@ echo OUTPUT: %OPATH%
 :: pause > nul
 echo Starting FFMPEG...
 
-"%~dp0ffmpeg/bin/ffmpeg.exe" -y -i %IPATH% -ac 1 -preset slow -vb 70k -ab 32k -g 360 -keyint_min 360 -bf 20 -qcomp 0.9 -rc-lookahead 120 -filter:v "fps=0.5, crop=in_w:in_h*0.75:0:0.125*in_h, scale=1600:1200" %OPATH%
+"%~dp0ffmpeg/bin/ffmpeg.exe" -y -i %IPATH% -ac 1 -preset slow -vb 70k -ab 32k -g 360 -keyint_min 360 -bf 20 -qcomp 0.9 -rc-lookahead 120 -filter:v "transpose=1, fps=0.5, crop=in_w:in_h*0.75:0:0.125*in_h, scale=1600:1200" %OPATH%
 
 echo The end.
 echo Press any key to exit.
@@ -37,7 +37,7 @@ set /p VIDY="Video height (pixels, default 1200): "
 
 echo Encoding with video bitrate of %VIDBIT% and resolution %VIDX%x%VIDY%
 
-"%~dp0ffmpeg/bin/ffmpeg.exe" -n -i IN.mp4 -ac 1 -preset slow -vb %VIDBIT%k -ab 32k -g 360 -keyint_min 360 -bf 20 -qcomp 0.9 -rc-lookahead 120 -filter:v "fps=1, scale=%VIDX%:%VIDY%" OUT.mp4
+"%~dp0ffmpeg/bin/ffmpeg.exe" -n -i IN.mp4 -ac 1 -preset slow -vb %VIDBIT%k -ab 32k -g 360 -keyint_min 360 -bf 20 -qcomp 0.9 -rc-lookahead 120 -filter:v "transpose=1, fps=1, scale=%VIDX%:%VIDY%" OUT.mp4
 
 echo DONE
 pause
