@@ -13,14 +13,14 @@ if [%1]==[] goto manual
 set IPATH=%1
 set OPATH=%IPATH:~0,-4%_out.mp4
 
-echo Automatic call: assuming square input, 1600x1200 output cropped @ 96 kbps video ^& 64 kbps audio mono
+echo Automatic call: assuming no crop @ 36 kbps video ^& 24 kbps audio mono
 echo SOURCE: %IPATH%
 echo OUTPUT: %OPATH%
 :: echo Please press ENTER once to continue with that configuration.
 :: pause > nul
 echo Starting FFMPEG...
 
-"%~dp0ffmpeg/bin/ffmpeg.exe" -y -i %IPATH% -ac 1 -preset medium -vb 96k -ab 64k -g 240 -keyint_min 80 -bf 16 -qcomp 0.92 -rc-lookahead 80 -filter:v "fps=0.5, crop=in_w:in_h*0.75:0:0.125*in_h, scale=1600:1200" %OPATH%
+"%~dp0ffmpeg/bin/ffmpeg.exe" -y -i %IPATH% -ac 1 -preset slow -vb 36k -ab 24k -g 720 -keyint_min 360 -bf 20 -qcomp 0.9 -rc-lookahead 120 -filter:v "fps=0.25" %OPATH%
 
 echo The end.
 echo Press any key to exit.
