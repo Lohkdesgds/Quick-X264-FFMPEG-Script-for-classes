@@ -1,2 +1,0 @@
-0 -\ scaling
-0 = scaling
